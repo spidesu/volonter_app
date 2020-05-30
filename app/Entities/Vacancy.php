@@ -10,5 +10,12 @@ class Vacancy extends Model
     protected $fillable = [
         'title',
         'description',
+        'date_start',
+        'date_end',
     ];
+
+    public function offers()
+    {
+        return $this->hasMany(Offer::class, 'vacancies_id');
+    }
 }

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Transformers\Vacancies;
+namespace App\Transformers\Offers;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Auth;
 
-class VacanciesTransformer extends JsonResource
+class OffersTransformer extends JsonResource
 {
     public function toArray($request)
     {
@@ -13,9 +13,8 @@ class VacanciesTransformer extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'description' => $this->description,
-            'date_start'=>$this->date_start,
-            'date_end'=>$this->date_end,
-            'offers' => $this->offers
+            'user' => $this->user,
+            'vacancy' => $this->vacancy,
         );
 
         return $data;

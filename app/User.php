@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Entities\Offer;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -41,5 +42,9 @@ class User extends Authenticatable
     public function questionnaire()
     {
         return $this->hasOne(Questionnaire::class, 'user_id');
+    }
+    public function offers()
+    {
+        return $this->hasMany(Offer::class, 'users_id');
     }
 }

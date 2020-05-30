@@ -34,10 +34,12 @@ Route::group([
     });
 });
 Route::group([
-    'middleware' => 'auth:api',
+    //'middleware' => 'auth:api',
     //'prefix' => 'vacancys'
 ], function () {
     Route::resource('vacancy', 'VacancyController');
+    Route::resource('tag', 'TagController');
+    Route::resource('offer', 'OfferController');
 
 });
 

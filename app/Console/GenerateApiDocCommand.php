@@ -22,12 +22,8 @@ class GenerateApiDocCommand extends Command
      *
      * @var string
      */
-    protected $description = 'generate swagger json doc';
+    protected $description = 'Generate Swager Doc';
 
-    public function __construct()
-    {
-        parent::__construct();
-    }
 
     public function handle()
     {
@@ -47,7 +43,6 @@ class GenerateApiDocCommand extends Command
             "paths" => [],
         ];
 
-        /** @var Router $router */
         $router = app()->router;
 
         foreach ($router->getRoutes()->getRoutesByName() as $key => $route){
@@ -57,20 +52,35 @@ class GenerateApiDocCommand extends Command
             $controllerClass = Str::parseCallback($route->getAction()['uses'])[0];
             if(method_exists($controllerClass, 'getDocResponses')){
                 $method = $route->getActionMethod();
+                if($controllerClass===$method) {
+                    $method = 'invoke';
+                }
                 $parameters = [];
                 foreach ($route->parameterNames() as $name){
                     $parameters[] = Parameter::string($name)->path()->required();
                 }
-                foreach ($route->middleware() as $middlewareName){
+                foreach ($route->gatherMiddleware() as $middlewareName){
                     if(isset($router->getMiddleware()[$middlewareName])){
                         $middlewareClass = $router->getMiddleware()[$middlewareName];
                         if(method_exists($middlewareClass, 'getDocParameters') && $middlewareClass::getDocParameters($method)){
                             $parameters = array_merge($parameters, $middlewareClass::getDocParameters($method));
                         }
                     }
+                    if(isset($router->getMiddlewareGroups()[$middlewareName])) {
+                        foreach ($router->getMiddlewareGroups()[$middlewareName] as $middlewareClass){
+                            if(method_exists($middlewareClass, 'getDocParameters') && $middlewareClass::getDocParameters($method)){
+                                $parameters = array_merge($parameters, $middlewareClass::getDocParameters($method));
+                            }
+                        }
+                    }
                 }
-                if(method_exists($controllerClass, 'getDocParameters') && $controllerClass::getDocParameters($method)){
-                    $parameters = array_merge($parameters, $controllerClass::getDocParameters($method));
+                $controller = resolve($controllerClass);
+                if (method_exists($controller, 'getDocParameters') && $controller->getDocParameters($method)){
+                    $parameters = array_merge($parameters, $controller->getDocParameters($method));
+                }
+                $summary = '';
+                if(method_exists($controllerClass, 'getDocSummary')){
+                    $summary = $controllerClass::getDocSummary($method);
                 }
                 $responses = $controllerClass::getDocResponses($method);
                 if($responses){
@@ -78,12 +88,16 @@ class GenerateApiDocCommand extends Command
                     foreach ($parameters as $parameter) {
                         $renderedParameters[] = $parameter->render();
                     }
-                    if(!isset($swagger['paths'][$route->uri()])) {
-                        $swagger['paths'][$route->uri()] = [];
+                    $uri = '/'.trim($route->uri(), '/');
+                    if(!isset($swagger['paths'][$uri])) {
+                        $swagger['paths'][$uri] = [];
                     }
-                    $swagger['paths'][$route->uri()][strtolower($route->methods()[0])] = [
+                    list($uriFirstPrefix) = explode('/', str_replace('api/', '', trim($uri, '/')));
+                    $swagger['paths'][$uri][strtolower($route->methods()[0])] = [
+                        "summary" => $summary,
                         "parameters"=> $renderedParameters,
                         "responses"=> $responses->render(),
+                        "tags" => [$uriFirstPrefix],
                     ];
                 }
             }
