@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\QuestionnaireResource;
+use App\Questionnaire;
 use App\Repositories\QuestionnaireRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -99,7 +100,7 @@ class QuestionnaireController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return (Questionnaire::find($id)->update($request->all()));
     }
 
     /**

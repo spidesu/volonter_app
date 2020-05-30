@@ -15,11 +15,11 @@ class CreateQuestionnaireTable extends Migration
     {
         Schema::create('questionnaires', function (Blueprint $table) {
             $table->id();
-            $table->integer('type_id');
-            $table->timestamp('birth_date');
-            $table->integer('experience');
-            $table->text('about');
-            $table->text('experience_about');
+            $table->integer('type_id')->default(1);
+            $table->timestamp('birth_date')->nullable();
+            $table->integer('experience')->nullable();
+            $table->text('about')->default('');
+            $table->text('experience_about')->default('');
 
             $table->timestamps();
         });
