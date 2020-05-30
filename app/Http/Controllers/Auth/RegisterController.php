@@ -19,7 +19,7 @@ class RegisterController extends Controller
             'activation_token' => Str::random(30),
         ]);
 
-        $user->notify(new RegisterNotification($user));
+        //$user->notify(new RegisterNotification($user));
 
         return response()->json([
             'msg' => "Register success"
