@@ -74,7 +74,7 @@ class QuestionnaireController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function getByUser($id)
+    public function getByUserId($id)
     {
         $questionnaire = $this->questionnaireRepository->getQuestionnaireByUserId($id);
         return new QuestionnaireResource($questionnaire);
