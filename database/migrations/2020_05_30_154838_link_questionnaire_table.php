@@ -14,7 +14,7 @@ class LinkQuestionnaireTable extends Migration
     public function up()
     {
         Schema::table('questionnaires', function (Blueprint $table) {
-            $table->bigInteger('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }
