@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateUserInfoRequest;
 use App\Http\Resources\ProfileResource;
 use App\Http\Resources\ProfileResourceCollection;
 use App\User;
@@ -86,13 +87,13 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param UpdateUserInfoRequest $request
+     * @param int $id
+     * @return void
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserInfoRequest $request, $id)
     {
-        //
+        return User::find($id)->update($request->all());
     }
 
     /**
