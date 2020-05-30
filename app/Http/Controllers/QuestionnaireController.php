@@ -26,9 +26,8 @@ class QuestionnaireController extends Controller
     public function index()
     {
         //return response()->json(User::all());
-        $user = Auth::user();
-        dd($user);
-        $questionnaire = $this->questionnaireRepository->getQuestionnaireByUserId($user->id);
+        $user = Auth::id();
+        $questionnaire = $this->questionnaireRepository->getQuestionnaireByUserId($user);
         return new QuestionnaireResource($questionnaire);
     }
 
@@ -65,6 +64,18 @@ class QuestionnaireController extends Controller
     public function show($id)
     {
         $questionnaire = $this->questionnaireRepository->getQuestionnaireInfo($id);
+        return new QuestionnaireResource($questionnaire);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getByUser($id)
+    {
+        $questionnaire = $this->questionnaireRepository->getQuestionnaireByUserId($id);
         return new QuestionnaireResource($questionnaire);
     }
 

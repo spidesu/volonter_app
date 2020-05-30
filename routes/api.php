@@ -33,3 +33,11 @@ Route::group([
         Route::resource('user','UserController');
     });
 });
+
+    Route::group([
+        'middleware' => 'auth:api'
+    ], function () {
+        Route::resource('questionnaire','QuestionnaireController');
+        Route::post('questionnaire/show/{id}','QuestionnaireController@getByUserId');
+    });
+
