@@ -19,8 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('api_token')->nullable();
-            $table->boolean('active')->default(false);
-            $table->string('activation_token');
+            $table->boolean('active')->default(true);
             $table->string('url_avatar')->nullable();
             $table->unsignedBigInteger('role_id')->default(1);
             $table->rememberToken();
