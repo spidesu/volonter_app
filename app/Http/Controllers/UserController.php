@@ -8,6 +8,7 @@ use App\User;
 use App\UserRole;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class UserController extends Controller
@@ -27,15 +28,13 @@ class UserController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return mixed
      */
     public function index()
     {
         //return response()->json(User::all());
-        $users = User::all();
-        return ProfileResource::collection($users);
+        $user = Auth::user();
+        return new ProfileResource($user);
     }
 
     /**

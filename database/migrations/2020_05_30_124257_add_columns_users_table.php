@@ -18,7 +18,7 @@ class AddColumnsUsersTable extends Migration
             $table->string('last_name');
             $table->string('middle_name');
             $table->string('phone');
-            
+
 
         });
     }
