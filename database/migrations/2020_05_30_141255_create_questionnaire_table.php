@@ -18,8 +18,8 @@ class CreateQuestionnaireTable extends Migration
             $table->integer('type_id')->default(1);
             $table->timestamp('birth_date')->nullable();
             $table->integer('experience')->nullable();
-            $table->text('about')->default('');
-            $table->text('experience_about')->default('');
+            $table->text('about')->nullable();
+            $table->text('experience_about')->nullable();
 
             $table->timestamps();
         });
