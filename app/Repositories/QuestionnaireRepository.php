@@ -37,6 +37,16 @@ class QuestionnaireRepository extends BaseRepository
     {
         $columns = ['id','type_id','birth_date','experience','about','experience_about','user_id'];
         $questionnaire = $this->startConditions()
+            ->where('id', $id)
+            ->toBase()
+            ->first($columns);
+        return $questionnaire;
+    }
+
+    public function getQuestionnaireByUserId($id)
+    {
+        $columns = ['id','type_id','birth_date','experience','about','experience_about','user_id'];
+        $questionnaire = $this->startConditions()
             ->where('user_id', $id)
             ->toBase()
             ->first($columns);
