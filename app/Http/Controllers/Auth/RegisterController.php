@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterFormRequest;
+use App\Questionnaire;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use Illuminate\Support\Str;
@@ -22,6 +23,8 @@ class RegisterController extends Controller
             'role_id'   => $request->role_id,
             'password' => Hash::make($request->password),
         ]);
+
+        Questionnaire::create(['user_id' => $user->id]);
 
         //$user->notify(new RegisterNotification($user));
 
