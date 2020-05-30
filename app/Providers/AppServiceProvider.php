@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Entities\Vacancy;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +14,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(
+            'App\Repositories\Providers\Vacancy\VacancyRepository',
+            function () {
+                return new \App\Repositories\Providers\Vacancy\Eloquent\EloquentVacancyRepository(new Vacancy());
+            }
+        );
     }
 
     /**

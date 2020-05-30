@@ -21,7 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group([
     'prefix' => 'auth'
 ], function () {
-    Route::post('login', 'Auth\LoginController@login')->name('auth.login');
+    Route::post('login', 'Auth\LoginController@login')->name('login');
     Route::post('register', 'Auth\RegisterController@register');
     Route::get('register/activate/{token}','Auth\RegisterController@registerActivate');
 
@@ -32,6 +32,13 @@ Route::group([
         Route::get('user', 'Auth\LoginController@user');
         Route::resource('user','UserController');
     });
+});
+Route::group([
+    'middleware' => 'auth:api',
+    //'prefix' => 'vacancys'
+], function () {
+    Route::resource('vacancy', 'VacancyController');
+
 });
 
     Route::group([
