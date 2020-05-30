@@ -15,8 +15,12 @@ class RegisterController extends Controller
         $user = User::create([
             'login' => $request->login,
             'email' => $request->email,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'middle_name' => $request->middle_name,
+            'phone'     => $request->phone,
+            'role_id'   => $request->role_id,
             'password' => Hash::make($request->password),
-            'activation_token' => Str::random(30),
         ]);
 
         //$user->notify(new RegisterNotification($user));
