@@ -21,7 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group([
     'prefix' => 'auth'
 ], function () {
-    Route::post('login', 'Auth\LoginController@login');
+    Route::post('login', 'Auth\LoginController@login')->name('auth.login');
     Route::post('register', 'Auth\RegisterController@register');
     Route::get('register/activate/{token}','Auth\RegisterController@registerActivate');
 
