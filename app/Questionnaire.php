@@ -17,6 +17,7 @@ class Questionnaire extends Model
         'experience',
         'about',
         'experience_about',
+        'city'
     ];
 
     public function user()

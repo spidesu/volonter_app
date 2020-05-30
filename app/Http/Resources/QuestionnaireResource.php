@@ -21,6 +21,7 @@ class QuestionnaireResource extends JsonResource
             'experience' => $this->experience,
             'about' => $this->about,
             'experience_about' => $this->experience_about,
+            'city' => $this->city
         ];
     }
 }

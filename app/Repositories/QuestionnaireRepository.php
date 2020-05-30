@@ -35,7 +35,7 @@ class QuestionnaireRepository extends BaseRepository
 
     public function getQuestionnaireInfo($id)
     {
-        $columns = ['id','type_id','birth_date','experience','about','experience_about','user_id'];
+        $columns = ['id','type_id','birth_date','experience','about','experience_about','user_id','city'];
         $questionnaire = $this->startConditions()
             ->where('id', $id)
             ->toBase()
@@ -45,7 +45,7 @@ class QuestionnaireRepository extends BaseRepository
 
     public function getQuestionnaireByUserId($id)
     {
-        $columns = ['id','type_id','birth_date','experience','about','experience_about','user_id'];
+        $columns = ['id','type_id','birth_date','experience','about','experience_about','user_id','city'];
         $questionnaire = $this->startConditions()
             ->where('user_id', $id)
             ->toBase()
