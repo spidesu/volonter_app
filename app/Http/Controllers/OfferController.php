@@ -28,14 +28,13 @@ class OfferController extends Controller
     {
         return OffersTransformer::collection($this->offerRepository->all());
     }
-
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  OfferRequest  $request
      * @return JsonResource
      */
-    public function store(\Illuminate\Http\Request $request)
+    public function store(OfferRequest $request)
     {
         $offer = $this->offerRepository->create($request);
         return new OffersTransformer($offer);
