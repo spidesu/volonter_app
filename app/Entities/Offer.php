@@ -29,6 +29,6 @@ class Offer extends Model
 
     public function review()
     {
-        return $this->hasOne(Offer::class);
+        return $this->belongsTo(Offer::class,'offer_id');
     }
 }
