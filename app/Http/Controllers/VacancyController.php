@@ -53,7 +53,7 @@ class VacancyController extends Controller
     public function show($id)
     {
         $vacancy = $this->vacancyRepository->getVacancy($id);
-        return new VacanciesWithOffersTransformer($vacancy);
+        return new VacanciesTransformer($vacancy);
     }
 
     /**
