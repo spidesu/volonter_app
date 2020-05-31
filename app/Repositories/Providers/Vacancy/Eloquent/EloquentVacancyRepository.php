@@ -45,6 +45,13 @@ class EloquentVacancyRepository extends BaseRepositories implements VacancyRepos
         return $vacancies;
     }
 
+    public function getVacancyByCity($city)
+    {
+        $vacancies = $this->model->with('offers')->where('city', $city)->get();
+
+        return $vacancies;
+    }
+
     public function create(Request $request) {
         $data = $request->all();
         $data['user_id'] = Auth::id();

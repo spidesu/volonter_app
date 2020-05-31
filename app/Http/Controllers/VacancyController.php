@@ -10,6 +10,7 @@ use App\Repositories\Providers\Vacancy\Eloquent\EloquentVacancyRepository;
 use App\Transformers\Vacancies\VacanciesTransformer;
 use App\Transformers\Vacancies\VacanciesWithOffersTransformer;
 use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class VacancyController extends Controller
@@ -22,14 +23,17 @@ class VacancyController extends Controller
     {
         $this->vacancyRepository = $vacancyRepository;
     }
+
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return JsonResource
      */
-    public function index()
+    public function index(Request $request)
     {
-        return VacanciesTransformer::collection($this->vacancyRepository->all());
+        $vacancies = $this->vacancyRepository->getVacancyByCity($request->city);
+        return VacanciesTransformer::collection($vacancies);
     }
 
     /**
@@ -62,6 +66,7 @@ class VacancyController extends Controller
         $vacancy = $this->vacancyRepository->getUserVacancy($id);
         return VacanciesTransformer::collection($vacancy);
     }
+
 
     /**
      * Update the specified resource in storage.
