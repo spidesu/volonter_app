@@ -7,6 +7,7 @@ use App\Http\Controllers\Swagger\OfferSwagger;
 use App\Http\Requests\OfferRequest;
 use App\Repositories\Providers\Offer\Eloquent\EloquentOfferRepository;
 use App\Transformers\Offers\OffersTransformer;
+use http\Env\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class OfferController extends Controller
@@ -28,13 +29,14 @@ class OfferController extends Controller
     {
         return OffersTransformer::collection($this->offerRepository->all());
     }
+
     /**
      * Store a newly created resource in storage.
      *
-     * @param  OfferRequest  $request
+     * @param Request $request
      * @return JsonResource
      */
-    public function store(OfferRequest $request)
+    public function store(Request $request)
     {
         $offer = $this->offerRepository->create($request);
         return new OffersTransformer($offer);
