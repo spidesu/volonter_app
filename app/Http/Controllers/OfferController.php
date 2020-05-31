@@ -11,7 +11,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class OfferController extends Controller
 {
-    use OfferSwagger;
+//    use OfferSwagger;
 
     protected $offerRepository;
 
