@@ -54,7 +54,7 @@ class EloquentVacancyRepository extends BaseRepositories implements VacancyRepos
 
     public function create(Request $request) {
         $data = $request->all();
-        $data['user_id'] = Auth::id();
+        $data['user_id'] = Auth::user()->id;
         dd($data);
         $vacancy = $this->model::create($data);
 
