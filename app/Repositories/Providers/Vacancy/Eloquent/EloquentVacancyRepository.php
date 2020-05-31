@@ -38,7 +38,7 @@ class EloquentVacancyRepository extends BaseRepositories implements VacancyRepos
     }
 
     public function create(Request $request) {
-
+        dd($request->all());
         $vacancy = $this->model::create($request->all());
 
         return $vacancy;
