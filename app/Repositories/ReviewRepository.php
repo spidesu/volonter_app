@@ -31,8 +31,8 @@ class ReviewRepository extends BaseRepository
         return $review;
     }
 
-    public function show() {
-
+    public function show($id) {
+        $review = $this->startConditions()->where('id', $id)->first;
 
     }
 

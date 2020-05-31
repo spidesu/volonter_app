@@ -60,7 +60,9 @@ class ReviewController extends Controller
      */
     public function show($id)
     {
-        //
+        $review = $this->reviewRepository->show($id);
+
+        return new ReviewResource($review);
     }
 
     /**
