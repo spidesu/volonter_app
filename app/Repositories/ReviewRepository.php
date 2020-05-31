@@ -10,7 +10,7 @@ class ReviewRepository extends BaseRepository
     public $vacancyRepository;
     public function __construct(VacancyRepository $vacancyRepository)
     {
-        //parent::__construct();
+        parent::__construct();
         $this->vacancyRepository = $vacancyRepository;
     }
     /**

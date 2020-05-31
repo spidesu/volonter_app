@@ -10,9 +10,9 @@ class Review extends Model
     //
     protected $fillable =
         [
-          'review_text',
-          'rating',
-          'offer_id',
+            'review_text',
+            'rating',
+            'offer_id',
         ];
 
     public function offer()
