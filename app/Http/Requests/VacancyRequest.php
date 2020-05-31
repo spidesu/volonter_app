@@ -31,6 +31,7 @@ class VacancyRequest extends FormRequest
             'description' => 'required',
             'date_start' => 'required',
             'date_end' => 'required',
+            'address' => 'required'
         ];
     }
     /*public function failedValidation(Validator $validator)

@@ -78,4 +78,10 @@ class OfferController extends Controller
             'message' => "Offer was deleted",
         ]);
     }
+
+    public function acceptOffer($id)
+    {
+        $offer = Offer::find($id)->update(['result' => true]);
+        return new OffersTransformer($offer);
+    }
 }
