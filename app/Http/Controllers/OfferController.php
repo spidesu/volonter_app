@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use App\Entities\Offer;
 use App\Http\Controllers\Swagger\OfferSwagger;
 use App\Http\Requests\OfferRequest;
-use App\Repositories\Providers\Offer\OfferRepository;
+use App\Repositories\Providers\Offer\Eloquent\EloquentOfferRepository;
 use App\Transformers\Offers\OffersTransformer;
-use App\Transformers\Vacancies\VacanciesTransformer;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class OfferController extends Controller
@@ -16,7 +15,7 @@ class OfferController extends Controller
 
     protected $offerRepository;
 
-    public function __construct(OfferRepository $offerRepository)
+    public function __construct(EloquentOfferRepository $offerRepository)
     {
         $this->offerRepository = $offerRepository;
     }
