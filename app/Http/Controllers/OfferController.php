@@ -17,6 +17,7 @@ class OfferController extends Controller
 
     public function __construct(EloquentOfferRepository $offerRepository)
     {
+        dd(request());
         $this->offerRepository = $offerRepository;
     }
     /**
