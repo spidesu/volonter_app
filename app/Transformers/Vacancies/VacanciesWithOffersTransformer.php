@@ -3,6 +3,7 @@
 namespace App\Transformers\Vacancies;
 
 use App\Http\Resources\OfferResource;
+use App\Transformers\Offers\OffersTransformer;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class VacanciesWithOffersTransformer extends JsonResource
@@ -13,7 +14,7 @@ class VacanciesWithOffersTransformer extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'description' => $this->description,
-            'offers' => OfferResource::collection($this->offers)
+            'offers' => OffersTransformer::collection($this->offers)
         );
 
         return $data;

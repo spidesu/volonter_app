@@ -8,7 +8,9 @@ use App\Http\Requests\VacancyRequest;
 use App\Repositories\Providers\Vacancy\VacancyRepository;
 use App\Entities\Vacancy;
 use App\Transformers\Vacancies\VacanciesTransformer;
+use App\Transformers\Vacancies\VacanciesWithOffersTransformer;
 use App\User;
+use http\Env\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class VacancyController extends Controller
@@ -30,6 +32,7 @@ class VacancyController extends Controller
     {
         return VacanciesTransformer::collection($this->vacancyRepository->all());
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -45,12 +48,13 @@ class VacancyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  Vacancy  $vacancy
+     * @param $id
      * @return JsonResource
      */
-    public function show(Vacancy $vacancy)
+    public function show($id)
     {
-        return new VacanciesTransformer($vacancy);
+        $vacancy = $this->vacancyRepository->getVacancy($id);
+        return new VacanciesWithOffersTransformer($vacancy);
     }
 
     /**
