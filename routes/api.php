@@ -67,7 +67,6 @@ Route::group([
 Route::group([
     'middleware' => 'auth:api'
 ], function () {
-    Route::resource('offer','OfferController');
     Route::get('offer/{id}/accept','OfferController@acceptOffer');
 });
 
