@@ -51,6 +51,7 @@ Route::group([
         Route::resource('questionnaire','QuestionnaireController');
         Route::get('questionnaire/show/{id}','QuestionnaireController@getByUserId');
         Route::get('geocode','HEREController@getGeocode');
+        Route::get('discover','HEREController@getDiscover');
     });
 
 Route::group([
