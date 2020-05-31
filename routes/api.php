@@ -39,10 +39,12 @@ Route::group([
 ], function () {
     Route::resource('vacancy', 'VacancyController');
     Route::get('city-vacancy',"VacancyController@indexCity");
+    Route::get('close-vacancy','VacancyController@close');
     Route::get('vacancy/user/{id}', 'VacancyController@getUserVacancies');
     Route::resource('tag', 'TagController');
     Route::resource('offer', 'OfferController');
     Route::resource('review','ReviewController');
+    Route::get('offer/history/{user_id}','OfferController@offerHistory');
     Route::get('review/average_rating/{user_id}', 'ReviewController@averageRating');
 
 });

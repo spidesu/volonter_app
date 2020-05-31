@@ -91,6 +91,16 @@ class VacancyController extends Controller
         return new VacanciesTransformer($vacancy);
     }
 
+    public function close($id)
+    {
+        $vacancy = Vacancy::find($id)->update(['status' => 2]);
+        return response()->json([
+            'errors' => false,
+            'id'=> $vacancy->id,
+            'message' => "Vacancy closed",
+        ]);
+    }
+
     /**
      * Remove the specified resource from storage.
      * @param  Vacancy  $vacancy

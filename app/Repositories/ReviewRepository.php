@@ -49,6 +49,7 @@ class ReviewRepository extends BaseRepository
             ->with('vacancy')
             ->where('vacancy.offers.user_id', $user_id)
             ->where('vacancy.offers.result', true)
+            ->where('vacancy.status', 2)
             ->pluck('rating')
             ->avg();
 

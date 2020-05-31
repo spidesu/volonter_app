@@ -83,4 +83,10 @@ class OfferController extends Controller
     {
         return Offer::find($id)->update(['result' => true]);
     }
+
+    public function offerHistory($user_id)
+    {
+        $history = $this->offerRepository->getUserOfferHistory($user_id);
+        return OffersTransformer::collection($history);
+    }
 }

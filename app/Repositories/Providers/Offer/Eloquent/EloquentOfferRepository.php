@@ -42,4 +42,13 @@ class EloquentOfferRepository extends BaseRepositories implements OfferRepositor
         return $offer;
     }
 
+    public function getUserOfferHistory($user_id)
+    {
+        $offers = $this->model
+            ->with('vacancy')
+            ->where('result', 1)
+            ->where('vacancy.status',2)
+            ->get();
+    }
+
 }
