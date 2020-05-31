@@ -15,7 +15,7 @@ class AddCityVacancyTable extends Migration
     {
         Schema::table('vacancies', function (Blueprint $table) {
             $table->string('city');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
