@@ -2,7 +2,6 @@
 
 
 namespace App\Repositories;
-use App\Repositories\Providers\Vacancy\Eloquent\EloquentVacancyRepository;
 use App\Review as Model;
 
 class ReviewRepository extends BaseRepository
@@ -11,7 +10,7 @@ class ReviewRepository extends BaseRepository
     public function __construct()
     {
         //parent::__construct();
-        $this->vacancyRepository = app(EloquentVacancyRepository::class);
+        $this->vacancyRepository = app(VacancyRepository::class);
     }
     /**
      * @return string

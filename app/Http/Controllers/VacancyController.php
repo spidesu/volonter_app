@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Docs\Parameter;
-use App\Repositories\Providers\Vacancy\VacancyRepository;
+use App\Repositories\VacancyRepository;
 use App\Entities\Vacancy;
 use App\Transformers\Vacancies\VacanciesTransformer;
 use Illuminate\Http\Request;
@@ -13,9 +13,9 @@ class VacancyController extends Controller
 {
     protected $vacancyRepository;
 
-    public function __construct(VacancyRepository $vacancyRepository)
+    public function __construct()
     {
-        $this->vacancyRepository = $vacancyRepository;
+        $this->vacancyRepository = app(VacancyRepository::class);
     }
 
     /**
