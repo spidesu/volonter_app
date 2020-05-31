@@ -34,7 +34,7 @@ Route::group([
     });
 });
 Route::group([
-    //'middleware' => 'auth:api',
+    'middleware' => 'auth:api',
     //'prefix' => 'vacancys'
 ], function () {
     Route::resource('vacancy', 'VacancyController');
