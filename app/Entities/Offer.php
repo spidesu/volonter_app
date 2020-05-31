@@ -17,10 +17,10 @@ class Offer extends Model
     ];
     public function user()
     {
-        return $this->hasOne(User::class, 'id');
+        return $this->hasOne(User::class, 'id','users_id');
     }
     public function vacancy()
     {
-        return $this->hasOne(Vacancy::class, 'id');
+        return $this->hasOne(Vacancy::class, 'id', 'vacancies_id');
     }
 }
