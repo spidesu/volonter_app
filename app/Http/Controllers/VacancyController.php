@@ -31,7 +31,6 @@ class VacancyController extends Controller
      */
     public function index()
     {
-        dd(123);
         return VacanciesTransformer::collection($this->vacancyRepository->all());
     }
 
@@ -43,6 +42,7 @@ class VacancyController extends Controller
      */
     public function indexCity(Request $request)
     {
+        dd(123);
         $vacancies = $this->vacancyRepository->getVacancyByCity($request->city);
         return VacanciesTransformer::collection($vacancies);
     }
