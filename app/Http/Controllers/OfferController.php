@@ -2,102 +2,80 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\OfferResource;
-use App\Repositories\OfferRepository;
-use Illuminate\Http\Request;
-use App\Offer;
-use Illuminate\Support\Facades\Auth;
+use App\Entities\Offer;
+use App\Http\Controllers\Swagger\OfferSwagger;
+use App\Http\Requests\OfferRequest;
+use App\Repositories\Providers\Offer\OfferRepository;
+use App\Transformers\Offers\OffersTransformer;
+use App\Transformers\Vacancies\VacanciesTransformer;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class OfferController extends Controller
 {
+    use OfferSwagger;
 
-    private $offerRepository;
+    protected $offerRepository;
 
-    /**
-     * UserController constructor.
-     */
-    public function __construct()
+    public function __construct(OfferRepository $offerRepository)
     {
-        //parent::__construct();
-        $this->offerRepository = app(OfferRepository::class);
+        $this->offerRepository = $offerRepository;
     }
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResource
      */
     public function index()
     {
-        return OfferResource::collection(Offer::all());
+        return OffersTransformer::collection($this->offerRepository->all());
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  OfferRequest  $request
+     * @return JsonResource
      */
-    public function store(Request $request)
+    public function store(OfferRequest $request)
     {
-        $data = $request->only('vacancy_id');
-        $data['users_id'] = Auth::id();
-        $offer = $this->offerRepository->create($data);
-
-        return new OfferResource($offer);
+        $offer = $this->offerRepository->create($request);
+        return new OffersTransformer($offer);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Offer  $offer
+     * @return JsonResource
      */
-    public function show($id)
+    public function show(Offer $offer)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return new VacanciesTransformer($offer);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  OfferRequest  $request
+     * @param  Offer  $offer
+     * @return JsonResource
      */
-    public function update(Request $request, $id)
+    public function update(OfferRequest $request, Offer $offer)
     {
-        //
+        $offer->update($request->all());
+        return new OffersTransformer($offer);
     }
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Offer  $offer
      */
-    public function destroy($id)
+    public function destroy(Offer $offer)
     {
-        //
+        $offer->delete();
+        return response()->json([
+            'errors' => false,
+            'id'=> $offer->id,
+            'message' => "Offer was deleted",
+        ]);
     }
 }

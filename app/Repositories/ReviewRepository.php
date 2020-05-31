@@ -2,15 +2,16 @@
 
 
 namespace App\Repositories;
+use App\Repositories\Providers\Vacancy\VacancyRepository;
 use App\Review as Model;
 
 class ReviewRepository extends BaseRepository
 {
     public $vacancyRepository;
-    public function __construct()
+    public function __construct(VacancyRepository $vacancyRepository)
     {
         //parent::__construct();
-        $this->vacancyRepository = app(VacancyRepository::class);
+        $this->vacancyRepository = $vacancyRepository;
     }
     /**
      * @return string
