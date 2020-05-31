@@ -1,18 +1,16 @@
 <?php
 
 
-namespace App\Repositories\Providers\Vacancy\Eloquent;
+namespace App\Repositories;
 
 
-use App\Entities\Vacancy;
-use App\Repositories\Providers\BaseRepositories;
-use App\Repositories\Providers\Vacancy\VacancyRepository;
+use App\Entities\Vacancy as Model;
 
-class EloquentVacancyRepository extends BaseRepositories implements VacancyRepository
+class VacancyRepository extends BaseRepository
 {
     /**
      * @var $model Vacancy
-    */
+     */
     protected $model;
 
 
@@ -36,5 +34,10 @@ class EloquentVacancyRepository extends BaseRepositories implements VacancyRepos
             ->create($data);
 
         return $vacancy;
+    }
+
+    protected function getModelClass()
+    {
+        return Model::class;
     }
 }

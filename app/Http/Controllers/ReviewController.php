@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\OfferResource;
-use App\Repositories\OfferRepository;
+use App\Http\Resources\ReviewResource;
+use App\Repositories\ReviewRepository;
 use Illuminate\Http\Request;
-use App\Offer;
-use Illuminate\Support\Facades\Auth;
 
-class OfferController extends Controller
+class ReviewController extends Controller
 {
-
-    private $offerRepository;
+    private $reviewRepository;
 
     /**
      * UserController constructor.
@@ -19,7 +16,7 @@ class OfferController extends Controller
     public function __construct()
     {
         //parent::__construct();
-        $this->offerRepository = app(OfferRepository::class);
+        $this->reviewRepository = app(ReviewRepository::class);
     }
     /**
      * Display a listing of the resource.
@@ -28,7 +25,7 @@ class OfferController extends Controller
      */
     public function index()
     {
-        return OfferResource::collection(Offer::all());
+        //
     }
 
     /**
@@ -49,11 +46,10 @@ class OfferController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->only('vacancy_id');
-        $data['users_id'] = Auth::id();
-        $offer = $this->offerRepository->create($data);
+        $data = $request->only('review_text','rating','vacancy_id');
+        $review = $this->reviewRepository->create($data);
 
-        return new OfferResource($offer);
+        return new ReviewResource($review);
     }
 
     /**
@@ -99,5 +95,11 @@ class OfferController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function averageRating($user_id)
+    {
+        $avg_rating = $this->reviewRepository->averageRatingByUserId($user_id);
+        return response()->json($avg_rating, 200);
     }
 }

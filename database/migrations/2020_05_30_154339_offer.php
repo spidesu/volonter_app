@@ -16,8 +16,8 @@ class Offer extends Migration
         Schema::create('offers', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->text('title');
-            $table->text('description');
+            $table->text('title')->nullable();
+            $table->text('description')->nullable();
             $table->unsignedBigInteger('users_id');
             $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
         });

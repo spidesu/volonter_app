@@ -51,3 +51,15 @@ Route::group([
         Route::get('geocode','HEREController@getGeocode');
     });
 
+Route::group([
+    'middleware' => 'auth:api'
+], function () {
+    Route::resource('review','ReviewController');
+});
+
+Route::group([
+    'middleware' => 'auth:api'
+], function () {
+    Route::resource('offer','OfferController');
+});
+
