@@ -44,12 +44,13 @@ class OfferController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  Offer  $offer
+     * @param $id
      * @return JsonResource
      */
-    public function show(Offer $offer)
+    public function show($id)
     {
-        return new VacanciesTransformer($offer);
+        $vacancy = $this->offerRepository->getOffer($id);
+        return new OffersTransformer($vacancy);
     }
 
     /**
