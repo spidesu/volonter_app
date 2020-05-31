@@ -15,7 +15,8 @@ class Vacancy extends Model
         'date_end',
         'city',
         'address',
-        'user_id'
+        'user_id',
+        'status'
     ];
 
     public function offers()
