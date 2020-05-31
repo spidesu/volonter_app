@@ -17,7 +17,7 @@ class CreateReviewsTable extends Migration
             $table->id();
             $table->float('rating')->nullable();
             $table->text('review_text');
-            $table->unsignedInteger('vacancy_id');
+            $table->unsignedInteger('offer_id');
             $table->foreign('offer_id')->on('offers')->references('id');
             $table->timestamps();
         });
