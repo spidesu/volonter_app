@@ -25,7 +25,7 @@ class VacancyController extends Controller
      */
     public function index()
     {
-        return VacanciesTransformer::collection($this->vacancyRepository->all());
+        return VacanciesTransformer::collection($this->vacancyRepository->getVacancies());
     }
 
     public static function getDocParametersIndex()
