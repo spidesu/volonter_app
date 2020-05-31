@@ -33,11 +33,21 @@ Route::group([
         Route::resource('user','UserController');
     });
 });
+
+Route::group([
+    'prefix' => 'user'
+], function () {
+    Route::post('{id}/touchtag', 'UserController@addTag')->name('user.addtag');
+    Route::delete('{id}/touchtag', 'UserController@delTag')->name('user.deltag');
+});
+
 Route::group([
     'middleware' => 'auth:api',
     //'prefix' => 'vacancys'
 ], function () {
     Route::resource('vacancy', 'VacancyController');
+    Route::post('vacancy/{id}/touchtag', 'VacancyController@addTag')->name('vacancy.addtag');
+    Route::delete('vacancy/{id}/touchtag', 'VacancyController@delTag')->name('vacancy.deltag');
     Route::get('city-vacancy',"VacancyController@indexCity");
     Route::get('close-vacancy/{id}','VacancyController@close');
     Route::get('vacancy/user/{id}', 'VacancyController@getUserVacancies');

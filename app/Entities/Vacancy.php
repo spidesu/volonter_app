@@ -27,4 +27,8 @@ class Vacancy extends Model
     {
         return $this->belongsTo(User::class,'user_id');
     }
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class, 'target', 'tags_relation');
+    }
 }

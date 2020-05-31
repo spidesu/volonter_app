@@ -22,6 +22,7 @@ class VacanciesTransformer extends JsonResource
             'city' => $this->city,
             'address' => $this->address,
             'status' => $this->status,
+            'tags' => $this->tags,
         );
 
         return $data;

@@ -2,18 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Entities\Tag;
+use App\Http\Controllers\Swagger\UserSwagger;
 use App\Http\Requests\UpdateUserInfoRequest;
+use App\Http\Requests\UserTouchTag;
+use App\Http\Requests\VacancyTouchTag;
 use App\Http\Resources\ProfileResource;
 use App\Http\Resources\ProfileResourceCollection;
+use App\Transformers\Users\UsersTransformer;
+use App\Transformers\Vacancies\VacanciesTransformer;
 use App\User;
 use App\UserRole;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Auth;
 
 
 class UserController extends Controller
 {
+    use UserSwagger;
     /**
      * @var \Illuminate\Contracts\Foundation\Application|mixed
      */
@@ -105,6 +113,22 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function addTag($id ,UserTouchTag $request)
+    {
+        $tag = Tag::find($request->get('tag_id'));
+        $user = $this->userRepository->find($id);
+        $user->tags()->save($tag);
+        return new UsersTransformer($user);
+    }
+
+    public function delTag($id ,UserTouchTag $request)
+    {
+        $tag = Tag::find($request->get('tag_id'));
+        $tag->users()->detach($id);
+        $user = $this->userRepository->find($id);
+        return new UsersTransformer($user);
     }
 
 

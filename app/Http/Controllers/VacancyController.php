@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Entities\Offer;
+use App\Entities\Tag;
 use App\Http\Controllers\Swagger\VacancySwagger;
 use App\Http\Requests\VacancyRequest;
 use App\Entities\Vacancy;
+use App\Http\Requests\VacancyTouchTag;
 use App\Repositories\Providers\Vacancy\Eloquent\EloquentVacancyRepository;
 use App\Transformers\Vacancies\VacanciesTransformer;
 use App\Transformers\Vacancies\VacanciesWithOffersTransformer;
@@ -110,4 +112,21 @@ class VacancyController extends Controller
             'message' => "Vacancy was deleted",
         ]);
     }
+
+    public function addTag($id ,VacancyTouchTag $request)
+    {
+        $tag = Tag::find($request->get('tag_id'));
+        $vacancy = $this->vacancyRepository->find($id);
+        $vacancy->tags()->save($tag);
+        return new VacanciesTransformer($vacancy);
+    }
+
+    public function delTag($id ,VacancyTouchTag $request)
+    {
+        $tag = Tag::find($request->get('tag_id'));
+        $tag->vacancies()->detach($id);
+        $vacancy = $this->vacancyRepository->find($id);
+        return new VacanciesTransformer($vacancy);
+    }
+
 }

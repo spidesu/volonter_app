@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Entities\Offer;
+use App\Entities\Tag;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -46,5 +47,9 @@ class User extends Authenticatable
     public function offers()
     {
         return $this->hasMany(Offer::class, 'users_id');
+    }
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class, 'target', 'tags_relation');
     }
 }
