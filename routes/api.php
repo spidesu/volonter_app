@@ -48,3 +48,15 @@ Route::group([
         Route::get('questionnaire/show/{id}','QuestionnaireController@getByUserId');
     });
 
+Route::group([
+    'middleware' => 'auth:api'
+], function () {
+    Route::resource('review','ReviewController');
+});
+
+Route::group([
+    'middleware' => 'auth:api'
+], function () {
+    Route::resource('offer','OfferController');
+});
+
