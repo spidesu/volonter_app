@@ -41,7 +41,7 @@ class VacancyController extends Controller
      */
     public function store(VacancyRequest $request)
     {
-        $vacancy = $this->vacancyRepository->create($request);
+        $vacancy = $this->vacancyRepository->create($request->all());
         return new VacanciesTransformer($vacancy);
     }
 
