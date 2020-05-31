@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Entities\Vacancy;
+use App\Entities\Offer;
 use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
@@ -12,11 +12,11 @@ class Review extends Model
         [
           'review_text',
           'rating',
-          'vacancy_id',
+          'offer_id',
         ];
 
-    public function vacancy()
+    public function offer()
     {
-        return $this->belongsTo(Vacancy::class,'vacancy_id');
+        return $this->hasOne(Offer::class);
     }
 }

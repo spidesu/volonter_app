@@ -15,7 +15,8 @@ class OffersTransformer extends JsonResource
             'description' => $this->description,
             'user' => $this->user,
             'vacancy' => $this->vacancy,
-            'result' => $this->result
+            'result' => $this->result,
+            'review' => $this->review,
         );
 
         return $data;
