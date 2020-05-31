@@ -40,6 +40,8 @@ Route::group([
     Route::resource('vacancy', 'VacancyController');
     Route::resource('tag', 'TagController');
     Route::resource('offer', 'OfferController');
+    Route::resource('review','ReviewController');
+    Route::get('review/average_rating/{user_id}', 'ReviewController@averageRating');
 
 });
 
