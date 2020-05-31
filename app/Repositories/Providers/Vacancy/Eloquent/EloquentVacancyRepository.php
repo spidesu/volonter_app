@@ -15,4 +15,26 @@ class EloquentVacancyRepository extends BaseRepositories implements VacancyRepos
     */
     protected $model;
 
+
+    public function getVacancies()
+    {
+        $vacancies = $this->model->all();
+
+        return $vacancies;
+    }
+
+    public function getVacancy($id)
+    {
+        $vacancy = $this->model->with('offers')->find($id);
+
+        return $vacancy;
+    }
+
+    public function create($data) {
+
+        $vacancy = $this->model
+            ->create($data);
+
+        return $vacancy;
+    }
 }

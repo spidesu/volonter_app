@@ -71,18 +71,21 @@ class VacancyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->only('title','description','tags','experience','about','experience_about');
+        $vacancy = $this->vacancyRepository->create($data);
+
+        return new VacanciesTransformer($vacancy);
     }
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Vacancy  $vacancy
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return VacanciesTransformer
      */
-    public function show(Vacancy $vacancy)
+    public function show($id)
     {
-        //
+        $vacancy = $this->vacancyRepository->getVacancy($id);
+        return new VacanciesTransformer($vacancy);
     }
 
     /**
