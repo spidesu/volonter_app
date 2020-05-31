@@ -67,6 +67,6 @@ Route::group([
 Route::group([
     'middleware' => 'auth:api'
 ], function () {
-    Route::get('offer/{id}/accept','OfferController@acceptOffer');
+    Route::get('offer-actions/{id}/accept','OfferController@acceptOffer');
 });
 
