@@ -27,7 +27,6 @@ class OfferRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
             'description' => 'required',
             'users_id' => 'required',
             'vacancies_id' => 'required',
