@@ -46,7 +46,7 @@ class EloquentOfferRepository extends BaseRepositories implements OfferRepositor
     {
         $offers = $this->model
             ->where('result', 1)
-            ->where('user_id', $user_id)
+            ->where('users_id', $user_id)
             ->with(['vacancy' => function($q) {
         $q->where('status','=',2);
             }])
