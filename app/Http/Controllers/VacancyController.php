@@ -27,10 +27,20 @@ class VacancyController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @return JsonResource
+     */
+    public function index()
+    {
+        return VacanciesTransformer::collection($this->vacancyRepository->all());
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
      * @param Request $request
      * @return JsonResource
      */
-    public function index(Request $request)
+    public function indexCity(Request $request)
     {
         $vacancies = $this->vacancyRepository->getVacancyByCity($request->city);
         return VacanciesTransformer::collection($vacancies);
