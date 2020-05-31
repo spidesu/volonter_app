@@ -15,9 +15,9 @@ class Offer extends Model
         'description',
         'users_id',
         'vacancies_id',
-        'address',
         'result'
     ];
+
     public function user()
     {
         return $this->hasOne(User::class, 'id','users_id');
