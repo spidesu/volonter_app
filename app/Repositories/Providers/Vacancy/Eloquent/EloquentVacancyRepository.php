@@ -7,6 +7,7 @@ namespace App\Repositories\Providers\Vacancy\Eloquent;
 use App\Entities\Vacancy;
 use App\Repositories\Providers\BaseRepositories;
 use App\Repositories\Providers\Vacancy\VacancyRepository;
+use Illuminate\Database\Eloquent\Model;
 
 class EloquentVacancyRepository extends BaseRepositories implements VacancyRepository
 {
@@ -14,6 +15,11 @@ class EloquentVacancyRepository extends BaseRepositories implements VacancyRepos
      * @var $model Vacancy
     */
     protected $model;
+
+    public function __construct(Vacancy $model)
+    {
+        parent::__construct($model);
+    }
 
 
     public function getVacancies()
@@ -32,8 +38,7 @@ class EloquentVacancyRepository extends BaseRepositories implements VacancyRepos
 
     public function create($data) {
 
-        $vacancy = $this->model
-            ->create($data);
+        $vacancy = $this->model->create($data);
 
         return $vacancy;
     }
