@@ -42,6 +42,7 @@ class VacancyController extends Controller
      */
     public function indexCity(Request $request)
     {
+        dd($request->city);
         $vacancies = $this->vacancyRepository->getVacancyByCity($request->city);
         return VacanciesTransformer::collection($vacancies);
     }
