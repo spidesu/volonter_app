@@ -36,7 +36,7 @@ class EloquentOfferRepository extends BaseRepositories implements OfferRepositor
         return $offer;
     }
 
-    public function store(Request $request) {
+    public function create(Request $request) {
         $offer = $this->model::create($request->all());
 
         return $offer;
