@@ -5,12 +5,11 @@ namespace App\Http\Controllers;
 use App\Entities\Offer;
 use App\Http\Controllers\Swagger\VacancySwagger;
 use App\Http\Requests\VacancyRequest;
-use App\Repositories\Providers\Vacancy\VacancyRepository;
 use App\Entities\Vacancy;
+use App\Repositories\Providers\Vacancy\Eloquent\EloquentVacancyRepository;
 use App\Transformers\Vacancies\VacanciesTransformer;
 use App\Transformers\Vacancies\VacanciesWithOffersTransformer;
 use App\User;
-use http\Env\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class VacancyController extends Controller
@@ -19,7 +18,7 @@ class VacancyController extends Controller
 
     protected $vacancyRepository;
 
-    public function __construct(VacancyRepository $vacancyRepository)
+    public function __construct(EloquentVacancyRepository $vacancyRepository)
     {
         $this->vacancyRepository = $vacancyRepository;
     }
