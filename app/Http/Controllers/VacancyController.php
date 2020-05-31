@@ -19,8 +19,9 @@ class VacancyController extends Controller
 
     protected $vacancyRepository;
 
-    public function __construct(EloquentVacancyRepository $vacancyRepository)
+    public function __construct(EloquentVacancyRepository $vacancyRepository, Request $request)
     {
+        dd($request);
         $this->vacancyRepository = $vacancyRepository;
     }
 
@@ -42,7 +43,6 @@ class VacancyController extends Controller
      */
     public function indexCity(Request $request)
     {
-        dd($request->city);
         $vacancies = $this->vacancyRepository->getVacancyByCity($request->city);
         return VacanciesTransformer::collection($vacancies);
     }
