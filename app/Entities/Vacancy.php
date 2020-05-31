@@ -2,6 +2,7 @@
 
 namespace App\Entities;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Vacancy extends Model
@@ -12,10 +13,17 @@ class Vacancy extends Model
         'description',
         'date_start',
         'date_end',
+        'city',
+        'address',
+        'user_id'
     ];
 
     public function offers()
     {
         return $this->hasMany(Offer::class, 'vacancies_id');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id');
     }
 }

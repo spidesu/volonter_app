@@ -15,7 +15,8 @@ class VacanciesTransformer extends JsonResource
             'description' => $this->description,
             'date_start'=>$this->date_start,
             'date_end'=>$this->date_end,
-            'offers' => $this->offers
+            'offers' => $this->offers,
+            'user' => $this->user,
         );
 
         return $data;

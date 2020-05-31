@@ -38,6 +38,7 @@ Route::group([
     //'prefix' => 'vacancys'
 ], function () {
     Route::resource('vacancy', 'VacancyController');
+    Route::get('vacancy/user/{id}', 'VacancyController@getUserVacancies');
     Route::resource('tag', 'TagController');
     Route::resource('offer', 'OfferController');
     Route::resource('review','ReviewController');

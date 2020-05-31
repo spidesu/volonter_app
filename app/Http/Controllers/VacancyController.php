@@ -56,6 +56,13 @@ class VacancyController extends Controller
         return new VacanciesTransformer($vacancy);
     }
 
+
+    public function getUserVacancies($id)
+    {
+        $vacancy = $this->vacancyRepository->getUserVacancy($id);
+        return VacanciesTransformer::collection($vacancy);
+    }
+
     /**
      * Update the specified resource in storage.
      *

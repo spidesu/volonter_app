@@ -9,6 +9,7 @@ use App\Repositories\Providers\BaseRepositories;
 use App\Repositories\Providers\Vacancy\VacancyRepository;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EloquentVacancyRepository extends BaseRepositories implements VacancyRepository
 {
@@ -37,8 +38,17 @@ class EloquentVacancyRepository extends BaseRepositories implements VacancyRepos
         return $vacancy;
     }
 
+    public function getUserVacancy($user_id)
+    {
+        $vacancies = $this->model->with('offers')->where('user_id', $user_id)->get();
+
+        return $vacancies;
+    }
+
     public function create(Request $request) {
-        $vacancy = $this->model::create($request->all());
+        $data = $request->all();
+        $data['user'] = Auth::id();
+        $vacancy = $this->model::create($data);
 
         return $vacancy;
     }
