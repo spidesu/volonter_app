@@ -7,6 +7,7 @@ namespace App\Repositories\Providers\Offer\Eloquent;
 use App\Repositories\Providers\BaseRepositories;
 use App\Repositories\Providers\Offer\OfferRepository;
 use App\Entities\Offer;
+use Illuminate\Http\Request;
 
 class EloquentOfferRepository extends BaseRepositories implements OfferRepository
 {
