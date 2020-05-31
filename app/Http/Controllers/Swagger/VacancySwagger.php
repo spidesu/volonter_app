@@ -188,7 +188,6 @@ trait VacancySwagger
     {
         return [
             Parameter::string('Authorization')->required()->header(),
-            //Parameter::number('id')->required()->formData(),
         ];
     }
     public static function getExampleResponseDataDestroy()
@@ -197,6 +196,146 @@ trait VacancySwagger
             'errors' => false,
             'id'=> 1,
             'message' => "Tag was deleted",
+        ];
+    }
+    public static function getDocParametersAddTag()
+    {
+        return [
+            Parameter::string('Authorization')->required()->header(),
+            Parameter::number('tag_id')->required()->formData(),
+        ];
+    }
+    public static function getExampleResponseDataAddTag()
+    {
+        return [
+            "data" => [
+                "id" => 1,
+                "title" => "Вакансия 1",
+                "description" => "описание 1",
+                "date_start" => 'null',
+                "date_end" => 'null',
+                "offers" => [
+                    [
+                        "id" => 1,
+                        "title" => "ауа",
+                        "description" => "уауау",
+                        "user" => [
+                            "id" => 1,
+                            "login" => "feil.candida",
+                            "email" => "theron43@example.org",
+                            "api_token" => 'null',
+                            "active" => 1,
+                            "url_avatar" => 'null',
+                            "role_id" => 1,
+                            "created_at" => "2020-05-30T14:21:58.000000Z",
+                            "updated_at" => "2020-05-30T14:21:58.000000Z",
+                            "deleted_at" => 'null',
+                            "first_name" => "",
+                            "last_name" => "",
+                            "middle_name" => "",
+                            "phone" => ""
+                        ],
+                        "result" => 0,
+                        "review" => 'null'
+                    ]
+                ],
+                "user" => 'null',
+                "city" => "",
+                "address" => "",
+                "status" => 1,
+                "tags" => [
+                    [
+                        "id" => 3,
+                        "title" => "тест",
+                        "description" => "тест2",
+                        "pivot" => [
+                            "target_id" => 1,
+                            "tag_id" => 3,
+                            "target_type" => "App\Entities\Vacancy"
+                        ]
+                    ],
+                    [
+                        "id" => 2,
+                        "title" => "тест",
+                        "description" => "тест2",
+                        "pivot" => [
+                            "target_id" => 1,
+                            "tag_id" => 2,
+                            "target_type" => "App\Entities\Vacancy"
+                        ]
+                    ]
+                ]
+            ]
+        ];
+    }
+    public static function getDocParametersDelTag()
+    {
+        return [
+            Parameter::string('Authorization')->required()->header(),
+            Parameter::number('tag_id')->required()->formData(),
+        ];
+    }
+    public static function getExampleResponseDataDelTag()
+    {
+        return [
+            "data" => [
+                "id" => 1,
+                "title" => "Вакансия 1",
+                "description" => "описание 1",
+                "date_start" => 'null',
+                "date_end" => 'null',
+                "offers" => [
+                    [
+                        "id" => 1,
+                        "title" => "ауа",
+                        "description" => "уауау",
+                        "user" => [
+                            "id" => 1,
+                            "login" => "feil.candida",
+                            "email" => "theron43@example.org",
+                            "api_token" => 'null',
+                            "active" => 1,
+                            "url_avatar" => 'null',
+                            "role_id" => 1,
+                            "created_at" => "2020-05-30T14:21:58.000000Z",
+                            "updated_at" => "2020-05-30T14:21:58.000000Z",
+                            "deleted_at" => 'null',
+                            "first_name" => "",
+                            "last_name" => "",
+                            "middle_name" => "",
+                            "phone" => ""
+                        ],
+                        "result" => 0,
+                        "review" => 'null'
+                    ]
+                ],
+                "user" => 'null',
+                "city" => "",
+                "address" => "",
+                "status" => 1,
+                "tags" => [
+                    [
+                        "id" => 3,
+                        "title" => "тест",
+                        "description" => "тест2",
+                        "pivot" => [
+                            "target_id" => 1,
+                            "tag_id" => 3,
+                            "target_type" => "App\Entities\Vacancy"
+                        ]
+                    ],
+                    [
+                        "id" => 2,
+                        "title" => "тест",
+                        "description" => "тест2",
+                        "pivot" => [
+                            "target_id" => 1,
+                            "tag_id" => 2,
+                            "target_type" => "App\Entities\Vacancy"
+                        ]
+                    ]
+                ]
+            ]
         ];
     }
 

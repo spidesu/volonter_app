@@ -35,4 +35,8 @@ abstract class BaseRepository
     {
         return clone $this->model;
     }
+    public function find($id)
+    {
+        return $this->model->find($id);
+    }
 }

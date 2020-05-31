@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Entities\Offer;
+use App\Entities\Tag;
+use App\Entities\Vacancy;
 use App\Http\Controllers\Swagger\OfferSwagger;
 use App\Http\Requests\OfferRequest;
 use App\Repositories\Providers\Offer\Eloquent\EloquentOfferRepository;
 use App\Transformers\Offers\OffersTransformer;
+use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class OfferController extends Controller
