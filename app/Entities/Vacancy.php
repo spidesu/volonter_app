@@ -16,6 +16,6 @@ class Vacancy extends Model
 
     public function offers()
     {
-        return $this->hasMany(Offer::class, 'vacancy_id');
+        return $this->hasMany(Offer::class, 'vacancies_id');
     }
 }
