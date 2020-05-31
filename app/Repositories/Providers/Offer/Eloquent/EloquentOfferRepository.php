@@ -50,6 +50,7 @@ class EloquentOfferRepository extends BaseRepositories implements OfferRepositor
         $q->where('status','=',2);
             }])
             ->get();
+        return $offers;
     }
 
 }
