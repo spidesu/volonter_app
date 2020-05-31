@@ -14,7 +14,8 @@ class Offer extends Model
         'description',
         'users_id',
         'vacancies_id',
-        'address'
+        'address',
+        'result'
     ];
     public function user()
     {

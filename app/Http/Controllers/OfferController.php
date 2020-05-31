@@ -82,7 +82,6 @@ class OfferController extends Controller
     public function acceptOffer($id)
     {
         $offer = Offer::find($id)->update(['result' => true]);
-        dd($offer);
         return new OffersTransformer($offer);
     }
 }
