@@ -37,9 +37,9 @@ class ReviewRepository extends BaseRepository
 
     }
 
-    public function getReviewByVacancyId($vacancy_id)
+    public function getReviewByOfferId($offer_id)
     {
-        $review = $this->startConditions()->where('vacancy_id', $vacancy_id)->first();
+        $review = $this->startConditions()->where('offer_id', $offer_id)->first();
         return $review;
     }
 

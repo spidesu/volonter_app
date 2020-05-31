@@ -21,6 +21,7 @@ class OfferResource extends JsonResource
             'user' => $this->user,
             'vacancy_id' => $this->vacancy_id,
             'result' => $this->result,
+            'review' => $this->review,
         ];
     }
 }
