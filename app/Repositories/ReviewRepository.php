@@ -23,7 +23,7 @@ class ReviewRepository extends BaseRepository
 
     public function create($data) {
 
-        if (!isset($data['vacancy_id'])) {
+        if (!isset($data['offer_id'])) {
             return false;
         }
         $review = $this->startConditions()

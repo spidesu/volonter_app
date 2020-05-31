@@ -46,7 +46,7 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->only('review_text','rating','vacancy_id');
+        $data = $request->only('review_text','rating','offer_id');
         $review = $this->reviewRepository->create($data);
 
         return new ReviewResource($review);
