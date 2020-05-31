@@ -21,7 +21,7 @@ class VacancyController extends Controller
 
     public function __construct(EloquentVacancyRepository $vacancyRepository, Request $request)
     {
-        dd($request);
+        dd($request->getRouteResolver());
         $this->vacancyRepository = $vacancyRepository;
     }
 
