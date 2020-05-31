@@ -8,6 +8,7 @@ use App\Entities\Vacancy;
 use App\Repositories\Providers\BaseRepositories;
 use App\Repositories\Providers\Vacancy\VacancyRepository;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 class EloquentVacancyRepository extends BaseRepositories implements VacancyRepository
 {
@@ -36,9 +37,9 @@ class EloquentVacancyRepository extends BaseRepositories implements VacancyRepos
         return $vacancy;
     }
 
-    public function create($data) {
+    public function create(Request $request) {
 
-        $vacancy = $this->model->create($data);
+        $vacancy = $this->model->create($request->all());
 
         return $vacancy;
     }
